@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">click</button>
+    <script type="module">
+      import { EventEmitter } from "../EventEmitter.js";
+      const eventBus = new EventEmitter();
+
+      function onClickBtn(data) {
+        console.log("click", data);
+        console.log(eventBus);
+      }
+      eventBus.once("click", onClickBtn);
+
+      document.getElementById("btn").onclick = (ev) => {
+        eventBus.emit("click", ev);
+      };
+
+      function onResize(data) {
+        console.log(data);
+      }
+      window.onresize = (ev) => {
+        eventBus.emit("resize", ev);
+      };
+      eventBus.on("resize", onResize);
+      console.log(eventBus);
+      setTimeout(() => {
+        eventBus.off("resize", onResize);
+        console.log(eventBus);
+      }, 10000);
+    </script>
+  </body>
+</html>
