@@ -26,7 +26,7 @@ export class EventEmitter {
       }
     }
   }
-  emit(event: string, data: any) {
+  emit(event: string, data?: any) {
     const fns = this.eventMap.get(event) as EventCallbacks;
     if (fns) {
       fns.forEach((i: number, fn: Function) => {
