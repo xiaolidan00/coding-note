@@ -12,7 +12,7 @@ class MyPromise {
       this.resolveCallbacks.forEach((f) => f(value));
     };
     const rejectedHandler = (reason) => {
-      this.value = reason;
+      this.reason = reason;
       this.state = this.key.rejected;
       this.rejectedCallbacks.forEach((f) => f(value));
     };
