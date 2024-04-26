@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        height: 100px;
+        width: 200px;
+        background-color: yellowgreen;
+        margin: 2px 0;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="list"></div>
+    <script type="module">
+      import { DragSort } from "../dragsort.js";
+      const data = [];
+      for (let i = 0; i < 10; i++) {
+        data.push({ name: "user" + i, idx: i + 1 });
+      }
+      const list = document.getElementById("list");
+      data.forEach((item) => {
+        let a = document.createElement("div");
+        a.className = "item";
+        a.innerText = `${item.idx} `;
+        list.appendChild(a);
+      });
+      const d = new DragSort(list, { data });
+    </script>
+  </body>
+</html>
