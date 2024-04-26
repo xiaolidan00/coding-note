@@ -26,6 +26,15 @@ export class DragSort {
     }
     this.children = children;
   }
+  setOneDraggable() {
+    for (let i = 0; i < this.children.length; i++) {
+      if (this.children[i] === this.sourceNode) {
+        this.children[i].setAttribute("draggable", true);
+      } else {
+        this.children[i].setAttribute("draggable", false);
+      }
+    }
+  }
   init() {
     this.container.addEventListener(
       "DOMSubtreeModified",
@@ -48,10 +57,12 @@ export class DragSort {
     if (this.config.activeClass) {
       e.target.classList.remove(this.config.activeClass);
     }
+    this.setChildDraggable();
     this.config.onEnd &&
       this.config.onEnd({ event: e, data: this.config.data });
   }
   onDragStart(e) {
+    this.setOneDraggable();
     this.sourceNode = e.target;
     this.defatultStyle = {};
     for (let k in this.config.activeStyle) {
