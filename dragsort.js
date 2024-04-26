@@ -3,7 +3,7 @@
 const defaultConfig = {
   data: [],
   activeStyle: {
-    backgroundColor: "rgba(255,255,255,0.2)",
+    transition: "all 1s ease-in-out",
     cursor: "move",
   },
   activeClass: "moving",
