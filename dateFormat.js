@@ -1,9 +1,9 @@
 export function formatDate(value, f) {
   let time = 0;
   if (value instanceof Date) time = value.getTime();
-  else if (value instanceof Number) time = value;
-  else if (value instanceof String) time = getDateTime(value);
-  if (f) {
+  else if (typeof value === "number") time = value;
+  else if (typeof value === "string") time = getDateTime(value);
+  if (f && time) {
     let format = f;
 
     let d = new Date(time);
