@@ -20,7 +20,7 @@ export class EventEmitter {
   off(event, fn) {
     if (typeof fn === "function") {
       const fns = this.eventMap.get(event);
-      if (fns.has(fn)) {
+      if (fns?.has(fn)) {
         fns.delete(fn);
       }
     }

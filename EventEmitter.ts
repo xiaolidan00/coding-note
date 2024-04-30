@@ -4,7 +4,7 @@ export class EventEmitter {
   eventMap: EventMap = new Map();
 
   on(event: string, fn: Function) {
-    if (typeof fn === 'function') {
+    if (typeof fn === "function") {
       const fns = this.eventMap.get(event) as EventCallbacks;
       if (fns) {
         if (!fns.has(fn)) {
@@ -19,9 +19,9 @@ export class EventEmitter {
     }
   }
   off(event: string, fn: Function) {
-    if (typeof fn === 'function') {
+    if (typeof fn === "function") {
       const fns = this.eventMap.get(event) as EventCallbacks;
-      if (fns.has(fn)) {
+      if (fns?.has(fn)) {
         fns.delete(fn);
       }
     }
