@@ -69,27 +69,38 @@ export function getDate(d) {
     return time;
   }
 }
+const hour = 3600000;
 export function getTime(s) {
   let time = 0;
   if (s.indexOf(":") > -1) {
-    time = new Date("1970-01-01 " + s);
+    s = s.split[":"];
+    if (s.length === 3) {
+      time = parseInt(s[0]) * hour;
+      time += parseInt(s[1]) * 60000;
+      time += parseInt(s[2]) * 1000;
+    } else if (s.length === 2) {
+      time = parseInt(s[0]) * hour;
+      time += parseInt(s[1]) * 60000;
+    } else if (s.length === 1) {
+      time = parseInt(s[0]) * hour;
+    }
   } else if (s) {
     if (s.indexOf("时") > -1) {
       s = s.split("时");
       let h = s[0];
-      time = parseInt(h) * 3600000;
+      time = parseInt(h) * hour;
       s = s[1];
     }
     if (s.indexOf("分") > -1) {
       s = s.split("分");
       let h = s[0];
-      time = parseInt(h) * 60000;
+      time += parseInt(h) * 60000;
       s = s[1];
     }
     if (s.indexOf("秒") > -1) {
       s = s.split("秒");
       let h = s[0];
-      time = parseInt(h) * 1000;
+      time += parseInt(h) * 1000;
     }
   }
   return time;
