@@ -15,7 +15,7 @@ const defaultConfig = {
 export class DragSort {
   constructor(container, config = defaultConfig) {
     this.container = container;
-    this.config = Object.assign(defaultConfig, config);
+    this.config = Object.assign({}, defaultConfig, config);
     this.sourceNode = null;
     this.init();
   }
