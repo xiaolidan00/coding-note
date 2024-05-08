@@ -7,13 +7,12 @@ export function setFlatObj(obj, str, value) {
   for (let i = 0; i < attrs.length; i++) {
     const n = attrs[i];
     if (n) {
-      if (!temp[n]) {
-        temp[n] = {};
-      }
-
       if (i === attrs.length - 1) {
         temp[n] = value;
       } else {
+        if (!temp[n]) {
+          temp[n] = {};
+        }
         temp = temp[n];
       }
     }
@@ -30,13 +29,12 @@ export function getFlatObj(obj, str) {
   for (let i = 0; i < attrs.length; i++) {
     const n = attrs[i];
     if (n) {
-      if (!temp[n]) {
-        temp[n] = {};
-      }
-
       if (i === attrs.length - 1) {
         return temp[n];
       } else {
+        if (temp[n] === undefined) {
+          return;
+        }
         temp = temp[n];
       }
     }
