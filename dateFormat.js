@@ -45,19 +45,23 @@ export function getDate(d) {
     let s = d.replace(/[\/.-]+/g, "");
     let dd = "";
     if (s.indexOf("年") > -1) {
-      let h = d.split("年")[0];
+      s = s.split("年");
+      let h = s[0];
       dd += h;
+      s = s[1];
     }
     if (s.indexOf("月") > -1) {
-      let h = d.split("月")[0];
+      s = s.split("月");
+      let h = s[0];
       if (dd) {
         dd += "-" + h;
       } else {
         dd = "1970-" + h;
       }
+      s = s[1];
     }
     if (s.indexOf("日") > -1) {
-      let h = d.split("日")[0];
+      let h = s.split("日")[0];
       if (dd) {
         dd += "-" + h;
       } else {
@@ -106,7 +110,7 @@ export function getTime(s) {
   return time;
 }
 export function getDateTime(str) {
-  if (!Number.isNaN(new Date(str).getTime())) {
+  if (!Number.isNaN(new Date(str).getTime()) && !/[时分秒年月日]+/.test(str)) {
     return new Date(str).getTime();
   }
   let ss = str.split(" ");
