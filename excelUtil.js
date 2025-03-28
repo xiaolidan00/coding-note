@@ -1,7 +1,7 @@
 export function parseExcel(file) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     import("exceljs").then((ExcelJs) => {
-      if (!ExcelJs) return;
+      if (!ExcelJs) return reject();
       const reader = new FileReader();
       reader.readAsArrayBuffer(file);
       reader.onload = () => {
