@@ -16,7 +16,7 @@ export function getBlob(url) {
   });
 }
 
-export function getBlob1() {
+export function getBlob1(url) {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "GET",
