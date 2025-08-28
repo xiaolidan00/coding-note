@@ -1,5 +1,5 @@
 export function checkVideoPlay() {
-  if (navigator && navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  if (navigator?.mediaDevices?.getUserMedia) {
     navigator.mediaDevices
       .getUserMedia({audio: true, video: true})
       .then(() => {
