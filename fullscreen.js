@@ -1,7 +1,7 @@
 export function onFullScreen() {
   /*判断是否全屏*/
   let isFullscreen =
-    document.fullScreenElement || //W3C
+    document.fullscreenElement || //W3C
     document.msFullscreenElement || //IE
     document.mozFullScreenElement || //火狐
     document.webkitFullscreenElement || //谷歌
