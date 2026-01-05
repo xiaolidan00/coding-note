@@ -8,3 +8,7 @@ export const copyStr = (str: string) => {
   document.execCommand('copy');
   document.body.removeChild(dom);
 };
+
+export const copyText = (str: string) => {
+  navigator.clipboard.writeText(str);
+};
