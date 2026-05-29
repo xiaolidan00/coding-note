@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../gpsHelper.js"></script>
+</head>
+
+<body>
+    <script>
+        function travelGeo(geojson, cb) {
+            geojson.features.forEach((a) => {
+                if (a.geometry.type === "MultiPolygon") {
+                    a.geometry.coordinates.forEach((b) => {
+                        b.forEach((c) => {
+                            cb(c);
+                        });
+                    });
+                } else {
+                    a.geometry.coordinates.forEach((c) => {
+                        cb(c);
+                    });
+                }
+            });
+        }
+        function download(filename, res) {
+            const url = URL.createObjectURL(new File([JSON.stringify(res)], filename));
+            const a = document.createElement("a");
+            a.style = "display: none";
+            a.download = filename;
+            a.href = url;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        // fetch('./shenzhen-baidu.json').then(res => res.json()).then(res => {
+        //     travelGeo(res, (path) => {
+        //         for (let i = 0; i < path.length; i++) {
+        //             const it = path[i];
+        //             const { lat, lng } = window.GSPHelper.bd_decrypt(it[1], it[0]);
+        //             path[i] = [lng, lat]
+        //         }
+
+        //     })
+        //     const filename = 'shenzhen-gcj.json'
+        //     const url = URL.createObjectURL(new File([JSON.stringify(res)], filename));
+        //     const a = document.createElement("a");
+        //     a.style = "display: none";
+        //     a.download = filename;
+        //     a.href = url;
+        //     document.body.appendChild(a);
+        //     a.click();
+        //     document.body.removeChild(a);
+        //     URL.revokeObjectURL(url);
+
+        // })
+
+        // fetch('./shenzhen-gcj.json').then(res => res.json()).then(res => {
+        //     travelGeo(res, (path) => {
+        //         for (let i = 0; i < path.length; i++) {
+        //             const it = path[i];
+        //             const { lat, lng } = window.GSPHelper.gcj_decrypt(it[1], it[0]);
+        //             path[i] = [lng, lat]
+        //         }
+
+        //     })
+        //     const filename = 'shenzhen-WGS-84.json'
+        //     const url = URL.createObjectURL(new File([JSON.stringify(res)], filename));
+        //     const a = document.createElement("a");
+        //     a.style = "display: none";
+        //     a.download = filename;
+        //     a.href = url;
+        //     document.body.appendChild(a);
+        //     a.click();
+        //     document.body.removeChild(a);
+        //     URL.revokeObjectURL(url);
+
+        // })
+
+        fetch('./shenzhen-WGS-84.json').then(res => res.json()).then(res => {
+            res.features = res.features.filter(a => a.properties.name != '深圳市')
+
+
+
+        })
+    </script>
+</body>
+
+</html>
